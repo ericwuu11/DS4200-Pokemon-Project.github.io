@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prioritization of Pokemon Across Generations</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+        <h1> Pokemon Tier List Changes Across Generations </h1>
+        <h3>Overall Introduction</h3>
+
+        <p>A childhood game that many remember or still play to this day, Pokemon, is known
+            for its constant expansions into different regions or generations if you strictly play
+            Nintendo's Pokemon video games. There's boundless amounts of questions one can ask about 
+            the Pokemon's stats, evolution, type, moveset, and so onl however, most of these visualizations
+            would be fairly predictable and somewhat meaningless. Thus we could theoretically propose questions like:
+        </p>
+    
+        <ol>
+            <li>Are there any patterns in the distribution of base stats across different generations?</li>
+            <li>Are there any patterns in the distribution of egg cycles among different evolutionary lines?</li>
+            <li>Do certain abilities appear more frequently among heavier or taller/egg types of Pokemon?</li>
+        </ol>
+              
+        <p>Such questions take a deeper look at trends between Pokemon in between different classifications 
+            rather than simply limiting the flow of information to within the same category. This is another 
+            factor of what makes exploring Pokemon data so interesting as layers of complexity can be methodically 
+            added to make the results of the final visualization all the more interesting to decipher. With regards 
+            to our approach, using generational data in accordance with the commonly used Pokemon simulator, Pokemon Showdown, 
+            we should expectedly yield a plethora of compelling visualizations and results.
+        </p>
+    
+        <p>As we delve into the depths of Pokémon data analysis, we recognize the importance of exploring beyond the surface to reveal 
+            hidden connections and patterns. By examining Pokemon characteristics across generations, we not only gain insights into 
+            the evolution of the franchise but also contribute to a broader understanding of complex systems and phenomena. Through 
+            our research, we aim to uncover valuable insights that not only enrich our understanding of Pokemon dynamics but also 
+            serve as a testament to the enduring appeal and cultural significance of the Pokemon phenomenon.
+        </p>
+    
+        <p>To learn more about Pokemon Showdown!, kindly refer to this <a href="https://play.pokemonshowdown.com/">Pokemon Showdown!</a> link 
+            or explore sources like <a href="https://www.smogon.com/">Smogon</a> that provides a lot of information and guides about Pokemon 
+            in general.
+        </p>
+        <br>
+    
+        <h3>Introduction to the data</h3>
+    
+        <p> Our analysis makes use of thee total datasets. The first of which is 
+            from Kaggle which provided which contains general information
+            on a Pokemon's name, type, overall stats, abilities, etc. For 
+            our second and third datasets, we pulled this from a GitHub repository 
+            where we took a formats-data.ts file which contains tier-related information 
+            for each Pokemon across generations, and a pokedex.ts file which provided in-depth 
+            information on each Pokemon's stats. Below we'll be summarizing what some of the 
+            tiers mean, so for future reference, you may revisit this table at any time if you 
+            are confused (hint: Smogon is a great resource for this as well!): 
+        </p>  
+    
+            <div class="center">
+            <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">Tier Abbreviation</th>
+                    <th class="tg-0lax">Meaning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-0lax">LC</td>
+                    <td class="tg-0lax">Little Cup</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">NFE</td>
+                    <td class="tg-0lax">Not Fully Evolved</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">RUBL</td>
+                    <td class="tg-0lax">Rarely Used, Borderline</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">PU</td>
+                    <td class="tg-0lax">Partially Used</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">NU</td>
+                    <td class="tg-0lax">Never Used</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">(PU)</td>
+                    <td class="tg-0lax">Parenthetical Partially Used</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">Illegal</td>
+                    <td class="tg-0lax">Banned or Illegally Obtained</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">UU</td>
+                    <td class="tg-0lax">Underused</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">OU</td>
+                    <td class="tg-0lax">Overused</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">UUBL</td>
+                    <td class="tg-0lax">Underused, Borderline</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">PUBL</td>
+                    <td class="tg-0lax">Partially Used, Borderline</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">RU</td>
+                    <td class="tg-0lax">Rarely Used</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">Uber</td>
+                    <td class="tg-0lax">Uber Tier</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">NUBL</td>
+                    <td class="tg-0lax">Never Used, Borderline</td>
+                  </tr>
+                </tbody>
+                </table>
+            </div>
+            <br>
+    
+            <h3>Static Visualizations</h3>
+            <h4>Violin Plot: Complete Stat Distributions</h4>
+                <div class='image'>
+                    <iframe src="complete.html" width="100%" height="400px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> The first of the violin plots depicts the complete stat distributions 
+                        across all 7 Pokemon generations. This plot offers a clear overview of 
+                        how total base stats are distributed, allowing for the identification 
+                        of outliers and understanding of statistical characteristics such as 
+                        central tendency and variability. As you may tell from a glance the overall 
+                        shape of each violin visualization is very similar in shape, with a high 
+                        concentration of Pokemon ranging between the 400s to 500s and the high being 
+                        in the 700s to 800s. This indicates that overall the distribution of Pokemon 
+                        base total stats do not fluctuate much. With that said, it is likely that the 
+                        developers do not favor power creep and want Pokemon within each generation to 
+                        always have similar stats and that other factors are favored. Some factors may 
+                        be design, typage, abilities, and movesets which are all more interesting 
+                        conceptually than increasing numbers. 
+                    </p>
+                </div>            
+            
+            <h4>Violin Plot: Competitive Stat Distributions</h4>
+                <div class='image'>
+                    <iframe src="competitive.html" width="100%" height="400px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> The second of the violin plots depicts the competitive stat distributions 
+                        across alsl 7 Pokemon generations. The main difference from the previous violin 
+                        plot is that this visualization omits Fully Evolved and Little Cup Pokemon, so 
+                        that people have a better idea of how total Pokemon stats impact the competitive 
+                        scene. With that said, all violin visualization for the most part have the same shape 
+                        where the center area has the greatest concentration of Pokemon and narrows at the top 
+                        and bottom. Analysis-wise, we see that the median competitive stats is greater than 
+                        in the complete stats which is to be expected, ranging from 450 to 550 total. Something 
+                        else to take notice of is that the highs and lows of each violin visualization is also 
+                        not as drastic. The reason for not seeing low, lows is mainly because Pokemon with low stats 
+                        would already have an immediate disadvantage as they won't dish out as much damage or be able 
+                        to take as much damage regardless if they have a good ability or moveset. On the other hand, the 
+                        high, highs are likely banned since they are likely legendary Pokemon or mega evolutions. Although 
+                        some legendaries that may not have as strong movesets may still be open to be used.
+                    </p>
+                </div>
+    
+            <h4>Bar Plot: Competitive Composition</h4>
+                <div class='image'>
+                    <iframe src="___.html" width="100%" height="400px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> The bar plot visualization created is used to show the Distribution of Pokemon in OU (Overused). As 
+                        one can see it is split by generations, and with each generation the distribution of OU is calculated 
+                        for each new generation that is added. With the release of a new generation there tends to a fairly even 
+                        split where the Pokemon of the new generation also rise to the OU-tier. The only sole exception would be 
+                        generation 4, where Pokemon of that generation quickly took many of the OU placements. It also stays very 
+                        consistent even after new generations are introduced and managed to even take the top spot on many occassions. 
+                        That said, generation 6 on its release was unsuccessful showing very few placement in the OU-tier. 
+                    </p>
+                </div>
+        
+            <h4>Sankey Diagram: Flow of Gen 1 Over time</h4>
+                <div class='center'>
+                    <iframe src="sankey.html" width="125%" height="500px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> The final of our static visualizations is the sankey diagram. This diagram maps how generation 1 Pokemon shift in tiers 
+                        over the generations. Over time it is evident that new gnerations added to the sankey diagram don't cause major flucations 
+                        in tiers as the connections between each node early on aren't extremely wavy, indicating that very minimal tier list changes 
+                        occur. Note that there are exceptions, namely in generation 4 to 6 where the connections between some of the nodes start shifting 
+                        and spliting a lot more than in the previous generations. One example of this can be seen in generation 5 OU, where the two connections 
+                        that initially flowed into generation 5 split off into 4 connections. All and all, this visualization can easily show how 
+                        often Pokemon leave or enter the competitive meta, but the user will still need to do proper research to better understand 
+                        why Pokemon within a certain generation falls off or rises to the top of the tier list.
+                    </p>
+                </div>
+            <br>
+    
+            <h3>Interactive visualizations</h3>
+            <h4>D3 Diagram: Pokemon Average Stat Changes Over Generations</h4>
+                <div class='center'>
+                    <iframe src="D3 Diagram.html" width="115%" height="550px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> This visualization shows Pokemon average stat changes over generations. This visualization was mainly used to see if power creep 
+                        is a common theme in Pokemon and whether stats were going up over time; however, as previously mentioned, the developers 
+                        do not seem to favor this path at all and want balance between all generations. Regardless, just from analyzing the trends of the 
+                        individual unique stats across the generations, we can see that there are several instances like in generation 7 where attack had 
+                        a higher average than the other generations, and just overall the increase in stats are minimal and the difference wouldn't 
+                        amount to greater than 10 from one generation to the next.  
+                    </p>
+                </div>            
+    
+            <h4>Scatter Plot: Statistical Influence on Pokemon Prioritization</h4>
+                <div class='image'>
+                    <iframe src="scatter_interactive.html" width="100%" height="500px" frameborder="0"></iframe>
+                </div>
+                <div class='text'>
+                    <p> This visualization illustrates each individual Pokemon by generation and categorizes them depending on their tiers. To interact with 
+                        the visualization, you can hover over individual data points to reveal detailed information about each Pokémon, including its name, 
+                        generation, tier, types, abilities, and base stats such as HP, Attack, Defense, Special Attack, Special Defense, and Speed. Additionally, 
+                        you can select specific Pokémon from the dropdown menu to highlight and focus on them within the scatter plot. The color of each point 
+                        represents the tier of the Pokémon according to the custom color scheme provided. This visualization offers insights into how Pokémon are 
+                        prioritized across generations based on their statistical attributes and tier classifications. It complements the Sankey diagram by providing 
+                        a deeper dive into individual Pokémon characteristics, allowing for a more nuanced understanding of how and why certain Pokémon transition between 
+                        tiers over time. Since this scatter plot doesn't directly illustrate tier list changes, utilizing multiple scatter plots over different time periods 
+                        can help piece together a comprehensive narrative of the evolving metagame dynamics.
+                    </p>
+                </div>
+                
+            <br>
+            <div class='center'>
+                <iframe src="roaring_skies_art.jpg" width="1100px" height="250px" frameborder="0"></iframe>
+            </div>
+            <br>
+    
+            <h3>Conclusions & Future Work</h3>
+    
+            <p>
+                To summarize some of our main finds, the first would have to 
+                be regarding OU (Overused) Pokemon over the generations. There is an 
+                exponential trend towards the negative as expected; however, we see 
+                that generation 4 stays at or near the top from its release to the 
+                present generations as well. Hence we may consider doing more future 
+                research to better understand what is so unique or future proof about 
+                generation 4 Pokemon.
+            </p>
+            <p>
+                Additionally, the competitive usage of Pokemon within each generation has 
+                relatively the same highs and lows in terms of total stats, but with 
+                regards to competitive play, many players use Pokemon around 450 - 550 
+                total stats range. This is likely due to the Pokemon of higher stats being 
+                banned, or that Pokemon within the 450 - 550s range have better abilities or 
+                movesets that allow them to stay competitive. With regards to future work, 
+                we may consider doing a deeper dive on a Pokemon's ability and moveset to 
+                better understand its impact on competitve play.
+            </p>
+    
+            <p>
+                The last of the findings was in the sankey diagram where we could generalize 
+                that high-tier or OU-tier Pokemon rarely move from their positions. The same 
+                can be said for low-tier Pokemon, which is something expected. The main surprise 
+                was due to generations 5 and 6 shaking up the meta a lot as we see many tier changes 
+                as the connections in between the nodes split off more frequently. If we were to continue 
+                this project, we may consider investigating more into why this disruption in status quo occurred. 
+                Some methods may include creating more specialized visualizations to specifically ask 
+                questions about the generation 5 and 6 Pokemon. 
+            </p> 
+            <hr> <!-- Divider -->
+            <div class="center">
+                <h3>Credits</h3>
+            </div>
+            <div class="center">
+                <p>
+                    <span><a href="mailto:liu.ed@northeastern.edu">Edward Liu</a></span> │ 
+                    <span><a href="mailto:wu.eric@northeastern.edu">Eric Wu</a></span> │ 
+                    <span><a href="mailto:zeng.gr@northeastern.edu">Gregory Zeng</a></span>
+                </p>
+            </div>            
+        </div>
+    </div>
+</body>
+</html>
